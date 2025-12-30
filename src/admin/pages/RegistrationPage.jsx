@@ -13,7 +13,7 @@ const RegistrationPage = () => {
 
     const fetchRegistrations = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/registrations');
+            const response = await fetch('/api/registrations');
             const data = await response.json();
             if (data.success) {
                 setRegistrations(data.data);
@@ -28,7 +28,7 @@ const RegistrationPage = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this registration?')) {
             try {
-                const response = await fetch(`http://localhost:5000/api/registrations/${id}`, {
+                const response = await fetch(`/api/registrations/${id}`, {
                     method: 'DELETE'
                 });
                 const data = await response.json();

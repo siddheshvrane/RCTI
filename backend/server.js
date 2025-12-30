@@ -21,8 +21,8 @@ const connectDB = async () => {
         const updateFacultyExperience = require('./utils/updateFacultyExperience');
         const seedAdmin = require('./utils/seedAdmin');
         try {
-            await updateFacultyExperience();
-            await seedAdmin();
+            updateFacultyExperience().catch(e => console.error(e));
+            seedAdmin().catch(e => console.error(e));
         } catch (error) {
             console.error('Failed to run startup scripts:', error);
         }

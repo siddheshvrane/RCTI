@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import eventBus from '../services/eventBus';
+import { mockApi } from '../services/mockApi';
 import { useTypingAnimation } from '../utils/typingAnimation';
 import './Contact.css';
 
@@ -21,7 +22,7 @@ const Contact = () => {
         // Fetch courses for dropdown
         const fetchCourses = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/courses');
+                const response = await fetch('/api/courses');
                 if (response.ok) {
                     const data = await response.json();
                     // API returns an array directly
@@ -80,7 +81,7 @@ const Contact = () => {
         setErrorMessage('');
 
         try {
-            const response = await fetch('http://localhost:5000/api/registrations', {
+            const response = await fetch('/api/registrations', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
