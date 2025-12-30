@@ -10,11 +10,14 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' })); // Increase limit for base64 images
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-    .then(async () => {
+// Connect to MongoDB
+const connectDB = async () => {
+    if (mongoose.connection.readyState >= 1) return;
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
         console.log('MongoDB Connected');
 
-        // Update faculty experience on server startup
+        // Run startup scripts only once
         const updateFacultyExperience = require('./utils/updateFacultyExperience');
         const seedAdmin = require('./utils/seedAdmin');
         try {
@@ -23,10 +26,19 @@ mongoose.connect(process.env.MONGO_URI)
         } catch (error) {
             console.error('Failed to run startup scripts:', error);
         }
-    })
-    .catch(err => console.log(err));
+    } catch (err) {
+        console.error('MongoDB Connection Error:', err);
+    }
+};
+
+// Middleware to ensure DB is connected
+app.use(async (req, res, next) => {
+    await connectDB();
+    next();
+});
 
 // Routes
+app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date() }));
 app.use('/api/courses', require('./routes/courses'));
 app.use('/api/faculty', require('./routes/faculty'));
 app.use('/api/testimonials', require('./routes/testimonials'));

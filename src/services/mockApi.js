@@ -1,4 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL || '/api';
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_URL = isLocal ? (import.meta.env.VITE_API_URL || 'http://localhost:5000/api') : '/api';
 
 export const mockApi = {
     login: async (username, password) => {
