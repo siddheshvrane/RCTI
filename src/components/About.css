@@ -1,0 +1,217 @@
+.about {
+    background: var(--color-gray-50);
+    padding: var(--spacing-16) 0;
+}
+
+.section-header {
+    margin-bottom: var(--spacing-8);
+}
+
+.section-title {
+    font-size: var(--text-4xl);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-4);
+    font-weight: 700;
+}
+
+.section-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* Intro Text - Centered */
+.about-intro {
+    max-width: 900px;
+    margin: 0 auto var(--spacing-12);
+    text-align: center;
+}
+
+.about-intro h3 {
+    color: var(--color-gray-900);
+    margin-bottom: var(--spacing-6);
+    font-weight: 700;
+    font-size: var(--text-2xl);
+}
+
+.about-intro p {
+    color: var(--color-gray-700);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-4);
+    font-weight: 400;
+    font-size: var(--text-base);
+}
+
+/* Stats Cards - 4 Columns */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-12);
+}
+
+.stat-card {
+    background: var(--color-white);
+    padding: var(--spacing-8);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    border: 2px solid var(--color-gray-200);
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 20px rgba(196, 30, 58, 0.15);
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--spacing-3);
+}
+
+.stat-label {
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+    font-weight: 600;
+}
+
+/* Features - 4 Columns */
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-6);
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-8);
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--color-gray-200);
+    transition: all var(--transition-base);
+}
+
+.feature-item:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 20px rgba(196, 30, 58, 0.1);
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.feature-item h4 {
+    color: var(--color-gray-900);
+    margin: 0;
+    font-size: var(--text-lg);
+    font-weight: 700;
+}
+
+.feature-item p {
+    color: var(--color-gray-600);
+    margin: 0;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-intro {
+        text-align: left;
+    }
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-4);
+    }
+
+    .stat-card {
+        padding: var(--spacing-6);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .section-title {
+        font-size: var(--text-3xl);
+    }
+
+    .section-subtitle {
+        font-size: var(--text-base);
+    }
+
+    .about-intro h3 {
+        font-size: var(--text-xl);
+    }
+
+    .about-intro p {
+        font-size: var(--text-sm);
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: var(--text-xs);
+    }
+
+    .about-intro {
+        padding: 0 var(--spacing-4);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .about-intro h3,
+    .about-intro p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}

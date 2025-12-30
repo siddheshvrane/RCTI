@@ -1,0 +1,292 @@
+.footer {
+    position: relative;
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-16) 0 var(--spacing-8);
+    overflow: hidden;
+}
+
+.footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(128, 0, 32, 0.95), rgba(160, 0, 42, 0.95));
+    z-index: 0;
+}
+
+.footer .container {
+    position: relative;
+    z-index: 1;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-12);
+    margin-bottom: var(--spacing-12);
+}
+
+.footer-left {
+    text-align: left;
+}
+
+.footer-institute-name {
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--color-white);
+    margin-bottom: var(--spacing-8);
+    letter-spacing: -0.5px;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-8);
+}
+
+.footer-item {
+    padding-bottom: var(--spacing-3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-label {
+    font-weight: 700;
+    font-size: var(--text-sm);
+    margin-bottom: var(--spacing-2);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.location-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.location-link:hover {
+    color: var(--color-accent-yellow);
+}
+
+.location-link svg {
+    flex-shrink: 0;
+}
+
+.footer-text {
+    color: var(--color-white);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.footer-text a {
+    color: var(--color-white);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-text a:hover {
+    color: var(--color-accent-yellow);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--spacing-3);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-6);
+}
+
+.footer-links a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--text-base);
+    transition: all var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--color-accent-yellow);
+}
+
+.footer-links .separator {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--text-sm);
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: var(--spacing-8);
+}
+
+.footer-logo {
+    text-align: right;
+}
+
+.footer-logo-text {
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.15);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: var(--spacing-2);
+}
+
+.footer-logo-subtitle {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+}
+
+.social-media h4 {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--spacing-4);
+    font-weight: 600;
+    text-align: right;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-4);
+    justify-content: flex-end;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    text-decoration: none;
+}
+
+.social-icon.facebook {
+    background: #1877f2;
+    color: white;
+}
+
+.social-icon.facebook:hover {
+    background: #145dbf;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
+}
+
+.social-icon.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+}
+
+.social-icon.instagram:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
+}
+
+.social-icon.whatsapp {
+    background: #25d366;
+    color: white;
+}
+
+.social-icon.whatsapp:hover {
+    background: #1da851;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+.mkcl-section {
+    margin-top: var(--spacing-4);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-3);
+}
+
+.mkcl-logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mkcl-logo {
+    height: 100px;
+    width: auto;
+    display: block;
+}
+
+.mkcl-text {
+    color: var(--color-white);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: var(--spacing-6);
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--text-sm);
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-8);
+    }
+
+    .footer-right {
+        justify-content: center;
+    }
+
+    .footer-logo {
+        text-align: center;
+    }
+
+    .footer-institute-name {
+        font-size: var(--text-2xl);
+    }
+
+    .footer-logo-text {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer {
+        padding: var(--spacing-12) 0 var(--spacing-6);
+    }
+
+    .footer-institute-name {
+        font-size: var(--text-xl);
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-2);
+    }
+
+    .footer-links .separator {
+        display: none;
+    }
+
+    .footer-logo-text {
+        font-size: 3rem;
+    }
+}
