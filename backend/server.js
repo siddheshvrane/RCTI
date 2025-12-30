@@ -39,6 +39,29 @@ app.use(async (req, res, next) => {
 
 // Routes
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date() }));
+app.get('/api/test-db', async (req, res) => {
+    try {
+        const state = mongoose.connection.readyState;
+        const stateMap = { 0: 'disconnected', 1: 'connected', 2: 'connecting', 3: 'disconnecting' };
+
+        await mongoose.connect(process.env.MONGO_URI);
+
+        res.json({
+            status: 'success',
+            connectionState: stateMap[state],
+            mongoUriPresent: !!process.env.MONGO_URI,
+            dbName: mongoose.connection.name
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: 'error',
+            message: error.message,
+            code: error.code,
+            name: error.name,
+            mongoUriPresent: !!process.env.MONGO_URI
+        });
+    }
+});
 app.use('/api/courses', require('./routes/courses'));
 app.use('/api/faculty', require('./routes/faculty'));
 app.use('/api/testimonials', require('./routes/testimonials'));
