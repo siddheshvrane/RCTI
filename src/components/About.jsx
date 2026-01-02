@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import eventBus from '../services/eventBus';
 import { useTypingAnimation } from '../utils/typingAnimation';
 import { mockApi } from '../services/mockApi';
