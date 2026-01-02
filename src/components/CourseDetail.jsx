@@ -7,6 +7,7 @@ import eventBus from '../services/eventBus';
 import { useEffect, useState } from 'react';
 import { Icons } from '../constants/icons';
 import { FiTarget, FiAward, FiCheckCircle, FiBookOpen, FiClock, FiActivity, FiDollarSign } from 'react-icons/fi';
+import SEO from './common/SEO';
 
 const CourseDetail = () => {
     const { id } = useParams();
@@ -43,8 +44,33 @@ const CourseDetail = () => {
         return <Navigate to="/" replace />;
     }
 
+    const courseSchema = course ? {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": course.title,
+        "description": course.description,
+        "provider": {
+            "@type": "Organization",
+            "name": "Rane's Computer & Typing Institute",
+            "sameAs": "https://rcti.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": course.fees,
+            "priceCurrency": "INR",
+            "category": "Educational"
+        }
+    } : null;
+
     return (
         <div className="course-detail-page" style={{ paddingTop: '80px', backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
+            <SEO
+                title={course.title}
+                description={course.introduction || course.description}
+                url={`/courses/${id}`}
+                keywords={`${course.title}, computer course, learn ${course.title}, ${course.level} course`}
+                schema={courseSchema}
+            />
             <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px', display: 'flex', gap: '40px', alignItems: 'flex-start', flexDirection: 'row' }}>
 
                 {/* Left Side: Sticky Course Card (Exact Replica) */}

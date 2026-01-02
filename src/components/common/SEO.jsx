@@ -1,0 +1,58 @@
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet-async';
+
+const SEO = ({ title, description, keywords, image, url, schema }) => {
+    const siteTitle = "Rane's Computer & Typing Institute";
+    const defaultDescription = "Rane's Computer and Typing Institute offers high-quality computer education and typing training. Join us to expertize in programming, web development, and more.";
+    const defaultKeywords = "computer institute, typing classes, programming courses, web development, Rane's institute, computer education";
+    const defaultImage = "/vite.svg"; // Replace with a real OG image if available
+    const siteUrl = "https://rcti.com"; // Replace with actual domain
+
+    const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+    const finalDescription = description || defaultDescription;
+    const finalKeywords = keywords || defaultKeywords;
+    const finalImage = image ? `${siteUrl}${image}` : `${siteUrl}${defaultImage}`;
+    const finalUrl = url ? `${siteUrl}${url}` : siteUrl;
+
+    return (
+        <Helmet>
+            {/* Standard metadata tags */}
+            <title>{fullTitle}</title>
+            <meta name="description" content={finalDescription} />
+            <meta name="keywords" content={finalKeywords} />
+            <link rel="canonical" href={finalUrl} />
+
+            {/* Open Graph tags (Facebook, LinkedIn) */}
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content={fullTitle} />
+            <meta property="og:description" content={finalDescription} />
+            <meta property="og:image" content={finalImage} />
+            <meta property="og:url" content={finalUrl} />
+            <meta property="og:site_name" content={siteTitle} />
+
+            {/* Twitter Card tags */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={fullTitle} />
+            <meta name="twitter:description" content={finalDescription} />
+            <meta name="twitter:image" content={finalImage} />
+
+            {/* Structured Data (JSON-LD) */}
+            {schema && (
+                <script type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
+            )}
+        </Helmet>
+    );
+};
+
+SEO.propTypes = {
+    title: PropTypes.string,
+    description: PropTypes.string,
+    keywords: PropTypes.string,
+    image: PropTypes.string,
+    url: PropTypes.string,
+    schema: PropTypes.object,
+};
+
+export default SEO;

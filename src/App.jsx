@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Header from './components/Header';
 import Home from './components/Home';
 import CourseDetail from './components/CourseDetail';
@@ -49,28 +50,30 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="App">
-      {!isAdminRoute && <Header />}
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/courses/:id" element={<CourseDetail />} />
+    <HelmetProvider>
+      <div className="App">
+        {!isAdminRoute && <Header />}
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/courses/:id" element={<CourseDetail />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminLayout />}>
-            <Route path="courses" element={<CoursePage />} />
-            <Route path="faculty" element={<FacultyPage />} />
-            <Route path="testimonials" element={<TestimonialsPage />} />
-            <Route path="banners" element={<BannerPage />} />
-            <Route path="registrations" element={<RegistrationPage />} />
-            {/* Default redirect to courses */}
-            <Route index element={<CoursePage />} />
-          </Route>
-        </Routes>
-      </main>
-      {!isAdminRoute && <Footer />}
-    </div>
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminLayout />}>
+              <Route path="courses" element={<CoursePage />} />
+              <Route path="faculty" element={<FacultyPage />} />
+              <Route path="testimonials" element={<TestimonialsPage />} />
+              <Route path="banners" element={<BannerPage />} />
+              <Route path="registrations" element={<RegistrationPage />} />
+              {/* Default redirect to courses */}
+              <Route index element={<CoursePage />} />
+            </Route>
+          </Routes>
+        </main>
+        {!isAdminRoute && <Footer />}
+      </div>
+    </HelmetProvider>
   );
 }
 

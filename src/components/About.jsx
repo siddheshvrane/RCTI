@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
 import eventBus from '../services/eventBus';
 import { useTypingAnimation } from '../utils/typingAnimation';
 import { mockApi } from '../services/mockApi';
+import SEO from './common/SEO';
 import './About.css';
 
 const About = () => {
@@ -51,6 +51,11 @@ const About = () => {
 
     return (
         <section id="about" className="section about" ref={sectionRef}>
+            <SEO
+                title="About Us"
+                description="Learn about Rane's Computer and Typing Institute, our history, experienced faculty, and commitment to quality education since 1997."
+                url="/#about"
+            />
             <div className="container">
                 <div className="section-header text-center mb-12">
                     <h2 className="section-title typing-effect">About Us</h2>
