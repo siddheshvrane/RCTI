@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import eventBus from '../services/eventBus';
 import './Header.css';
+import rctiHeaderLogo from '../assets/RCTI_header.jpeg';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -55,7 +56,8 @@ const Header = () => {
                 <div className="header-content">
                     {/* Logo - Text Only */}
                     <div className="logo" onClick={() => handleNavClick('home')}>
-                        <div className="logo-text">
+                        <div className="logo-text" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <img src={rctiHeaderLogo} alt="RCTI Logo" style={{ height: '40px', width: 'auto' }} />
                             <span className="logo-title">Rane's Computer & Typing Institute</span>
                         </div>
                     </div>
