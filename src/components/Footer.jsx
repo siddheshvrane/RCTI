@@ -41,7 +41,8 @@ const Footer = () => {
                             <div className="footer-item">
                                 <div className="footer-label">Phone</div>
                                 <div className="footer-text">
-                                    <a href="tel:+919869855785">+91 98698 55785</a>
+                                    <a href="tel:+919869855785">+91 98698 55785</a><br />
+                                    <a href="tel:+918355810613">+91 83558 10613</a>
                                 </div>
                             </div>
 
@@ -102,7 +103,7 @@ const Footer = () => {
                                 </a>
 
                                 <a
-                                    href="https://wa.me/919869855785"
+                                    href="https://wa.me/918355810613"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="social-icon whatsapp"
