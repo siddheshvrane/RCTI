@@ -14,8 +14,8 @@ const Home = () => {
         "url": "https://www.ranescomputer.in",
         "logo": "https://www.ranescomputer.in/vite.svg", // Replace with actual logo URL if different
         "sameAs": [
-            "https://www.facebook.com/rcti",
-            "https://www.instagram.com/rcti"
+            "https://www.facebook.com/share/1NAruT9GD5/",
+            "https://www.instagram.com/ranescomputer?igsh=MXByMDM3c3pmNnR3NQ=="
         ],
         "description": "Rane's Computer and Typing Institute in Ghatkopar West offers government-certified typing courses (GCC-TBC), MSCIT, CCC, Tally, and programming classes.",
         "address": {

@@ -78,7 +78,7 @@ const Footer = () => {
                             <h4>Follow Us</h4>
                             <div className="social-links">
                                 <a
-                                    href="https://facebook.com"
+                                    href="https://www.facebook.com/share/1NAruT9GD5/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="social-icon facebook"
@@ -90,7 +90,7 @@ const Footer = () => {
                                 </a>
 
                                 <a
-                                    href="https://instagram.com"
+                                    href="https://www.instagram.com/ranescomputer?igsh=MXByMDM3c3pmNnR3NQ=="
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="social-icon instagram"
