@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet-async';
 
 const SEO = ({ title, description, keywords, image, url, schema }) => {
     const siteTitle = "Rane's Computer & Typing Institute";
-    const defaultDescription = "Rane's Computer and Typing Institute offers high-quality computer education and typing training. Join us to expertize in programming, web development, and more.";
-    const defaultKeywords = "computer institute, typing classes, programming courses, web development, Rane's institute, computer education";
+    const defaultDescription = "Rane's Computer and Typing Institute in Ghatkopar West, Mumbai. Best computer classes for MSCIT, CCC, Tally, Python, and Government Certified Typing courses.";
+    const defaultKeywords = "computer classes near me, typing classes near me, computer institute Ghatkopar, MSCIT classes Mumbai, GCC-TBC typing, coding classes, Rane's Computer Institute";
     const defaultImage = "/vite.svg"; // Replace with a real OG image if available
-    const siteUrl = "https://rcti.com"; // Replace with actual domain
+    const siteUrl = "https://www.ranescomputer.in";
 
     const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
     const finalDescription = description || defaultDescription;

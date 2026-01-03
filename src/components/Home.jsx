@@ -9,33 +9,57 @@ import SEO from './common/SEO';
 const Home = () => {
     const organizationSchema = {
         "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
+        "@type": ["EducationalOrganization", "LocalBusiness"],
         "name": "Rane's Computer & Typing Institute",
-        "url": "https://rcti.com",
-        "logo": "https://rcti.com/vite.svg",
+        "url": "https://www.ranescomputer.in",
+        "logo": "https://www.ranescomputer.in/vite.svg", // Replace with actual logo URL if different
         "sameAs": [
             "https://www.facebook.com/rcti",
             "https://www.instagram.com/rcti"
         ],
-        "description": "Rane's Computer and Typing Institute offers high-quality computer education and typing training.",
+        "description": "Rane's Computer and Typing Institute in Ghatkopar West offers government-certified typing courses (GCC-TBC), MSCIT, CCC, Tally, and programming classes.",
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "City Name",
-            "addressRegion": "State",
+            "streetAddress": "Shop no 7, Lingeshwar Apartment, near Saraswat Bank, Bhatwadi, Kaju Pada, Ghatkopar West",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400084",
             "addressCountry": "IN"
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+91-9876543210",
+            "telephone": "+91-9869855785",
             "contactType": "customer service"
-        }
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "19.099", // Approximate for Ghatkopar West
+            "longitude": "72.910"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ],
+                "opens": "07:00",
+                "closes": "21:00"
+            }
+        ],
+        "priceRange": "$$"
     };
 
     return (
         <>
             <SEO
-                title="Home"
-                description="Welcome to Rane's Computer and Typing Institute. We offer best-in-class computer programming, typing, and software development courses."
+                title="Best Computer & Typing Classes in Ghatkopar"
+                description="Join Rane's Computer & Typing Institute in Ghatkopar, Mumbai for Government Certified Typing (GCC-TBC), MSCIT, Tally Prime, Python, and Java courses. 100% practical training."
+                keywords="computer classes near me, typing institute Ghatkopar, MSCIT classes, GCC-TBC typing exam, Tally course, Python programming, Java classes, best computer institute Mumbai"
                 url="/"
                 schema={organizationSchema}
             />
