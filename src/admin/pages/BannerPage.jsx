@@ -123,7 +123,7 @@ const BannerPage = () => {
                                         borderRadius: 'var(--radius-md)',
                                         overflow: 'hidden',
                                         border: '2px solid var(--color-gray-200)',
-                                        width: '100%' // Full width on mobile
+                                        // width: '100%' // Removed to fix layout issue
                                     }}>
                                         <img
                                             src={banner.imageUrl}

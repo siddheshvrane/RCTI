@@ -9,7 +9,8 @@
 .slider-container {
     position: relative;
     width: 100%;
-    height: 500px;
+    aspect-ratio: 19 / 5;
+    /* height: 500px; - Removed fixed height */
     overflow: hidden;
 }
 
@@ -126,9 +127,9 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .slider-container {
+    /* .slider-container {
         height: 400px;
-    }
+    } - Removed fixed height */
 
     .slider-btn {
         width: 40px;
@@ -146,12 +147,12 @@
 
 @media (max-width: 640px) {
     .photo-slider {
-        margin-top: 60px;
+        margin-top: 80px;
     }
 
-    .slider-container {
+    /* .slider-container {
         height: 300px;
-    }
+    } - Removed fixed height */
 
     .slider-btn {
         display: none;
