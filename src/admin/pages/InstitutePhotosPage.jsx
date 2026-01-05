@@ -70,7 +70,7 @@ const InstitutePhotosPage = () => {
             )}
 
             <div className="admin-page-header">
-                <h2 className="admin-page-title">Manage Life at RCTI Photos</h2>
+                <h2 className="admin-page-title">Manage Gallery Photos</h2>
                 <label className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
                     <MdAdd /> <MdUpload /> Upload New Photo
                     <input type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
