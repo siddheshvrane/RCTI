@@ -57,7 +57,7 @@ const Home = () => {
     return (
         <>
             <SEO
-                title="Best Computer & Typing Classes in Ghatkopar"
+                // title="Best Computer & Typing Classes in Ghatkopar" // Removed to show only institute name
                 description="Join Rane's Computer & Typing Institute in Ghatkopar, Mumbai for Government Certified Typing (GCC-TBC), MSCIT, Tally Prime, Python, and Java courses. 100% practical training."
                 keywords="computer classes near me, typing institute Ghatkopar, MSCIT classes, GCC-TBC typing exam, Tally course, Python programming, Java classes, best computer institute Mumbai"
                 url="/"
