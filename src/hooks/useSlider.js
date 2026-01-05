@@ -10,10 +10,10 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 export const useSlider = (sliderRef, dependencies = [], options = {}) => {
     const {
         autoPlay = false,
-        autoPlayInterval = 5000,
+        autoPlayInterval = 3000, // Changed to 3 seconds
         pauseOnHover = true,
         isPaused = false,
-        threshold = 0.6 // Increased threshold for stricter visibility check
+        threshold = 0.6
     } = options;
 
     const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -57,7 +57,25 @@ export const useSlider = (sliderRef, dependencies = [], options = {}) => {
 
     const scroll = useCallback((direction) => {
         if (sliderRef.current) {
-            const scrollAmount = 400; // Base scroll amount
+            // Dynamic scroll amount calculation
+            let scrollAmount = 400; // Fallback
+            const firstCard = sliderRef.current.firstElementChild;
+
+            if (firstCard) {
+                const cardStyle = window.getComputedStyle(firstCard);
+                const cardWidth = firstCard.offsetWidth;
+                const marginRight = parseFloat(cardStyle.marginRight) || 0;
+                const marginLeft = parseFloat(cardStyle.marginLeft) || 0;
+                // We assume flex gap or margin is used. 
+                // If using flex gap, it's harder to get from just the element. 
+                // But typically slider items have a width + gap. 
+                // Let's check if the parent has a gap.
+                const parentStyle = window.getComputedStyle(sliderRef.current);
+                const gap = parseFloat(parentStyle.gap) || 0;
+
+                scrollAmount = cardWidth + Math.max(marginRight + marginLeft, gap);
+            }
+
             let newScrollLeft;
 
             if (direction === 'left') {
