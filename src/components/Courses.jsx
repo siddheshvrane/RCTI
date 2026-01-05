@@ -20,7 +20,7 @@ const Courses = () => {
 
     // Use custom hooks
     const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [filteredCourses], { autoPlay: true });
-    useIntersectionObserver(sectionRef, 'courses');
+    useIntersectionObserver(sectionRef, 'courses', { threshold: 0.1 }, [filteredCourses.length]);
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -54,7 +54,7 @@ const Courses = () => {
     ];
 
     return (
-        <section id="courses" className="section courses" ref={sectionRef}>
+        <section id="courses" className="section courses" ref={sectionRef} style={{ minHeight: '600px' }}>
             <div className="container">
                 <div className="section-header text-center mb-12">
                     <h2 className="section-title typing-effect">Our Courses</h2>

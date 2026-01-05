@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { useTypingAnimation } from '../utils/typingAnimation';
 import { mockApi } from '../services/mockApi';
 import { useSlider } from '../hooks/useSlider';
@@ -35,17 +35,19 @@ const Faculty = ({ courseName }) => {
         : faculty;
 
     // Sort by experience (high to low)
-    const sortedFaculty = [...filteredFaculty].sort((a, b) => {
-        const expA = parseInt(a.experience) || 0;
-        const expB = parseInt(b.experience) || 0;
-        return expB - expA; // Descending
-    });
+    const sortedFaculty = useMemo(() => {
+        return [...filteredFaculty].sort((a, b) => {
+            const expA = parseInt(a.experience) || 0;
+            const expB = parseInt(b.experience) || 0;
+            return expB - expA; // Descending
+        });
+    }, [filteredFaculty]);
 
     const displayFaculty = sortedFaculty;
 
     // Use custom hooks
     const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [displayFaculty], { autoPlay: true });
-    useIntersectionObserver(sectionRef, 'faculty');
+    useIntersectionObserver(sectionRef, 'faculty', undefined, [displayFaculty.length]);
 
     if (courseName && displayFaculty.length === 0) {
         return null;

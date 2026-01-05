@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import eventBus from '../services/eventBus';
 import './Header.css';
 import rctiHeaderLogo from '../assets/RCTI_header.jpeg';
@@ -7,6 +8,10 @@ const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const isCourseDetailPage = location.pathname.startsWith('/courses/');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,9 +30,61 @@ const Header = () => {
         };
     }, []);
 
-    const handleNavClick = (section) => {
-        eventBus.emitNavigation({ section });
+    const handleNavClick = async (section) => {
         setIsMobileMenuOpen(false);
+
+        if (isCourseDetailPage) {
+            if (section === 'home') {
+                navigate('/');
+                window.scrollTo(0, 0);
+                return;
+            }
+            if (section === 'courses' || section === 'contact') {
+                navigate('/');
+                // Wait for navigation
+                setTimeout(() => {
+                    const element = document.getElementById(section);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        eventBus.emitNavigation({ section });
+                    }
+                }, 100);
+                return;
+            }
+            if (section === 'about-course' || section === 'faculty' || section === 'testimonials') {
+                const element = document.getElementById(section);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                return;
+            }
+        }
+
+        if (section === 'home') {
+            if (location.pathname === '/') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            } else {
+                navigate('/');
+                window.scrollTo(0, 0);
+                return;
+            }
+        }
+
+        // Standard home page navigation
+        eventBus.emitNavigation({ section });
+
+        // If we are on some other page and clicking a home section (nav item with id), navigate home first
+        if (location.pathname !== '/' && !section.startsWith('/')) {
+            navigate('/');
+            setTimeout(() => {
+                const element = document.getElementById(section);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+            return;
+        }
 
         const element = document.getElementById(section);
         if (element) {
@@ -41,7 +98,7 @@ const Header = () => {
         eventBus.emitUIState({ mobileMenuOpen: newState });
     };
 
-    const navItems = [
+    const defaultNavItems = [
         { id: 'home', label: 'Home' },
         { id: 'about', label: 'About Us' },
         { id: 'courses', label: 'Courses' },
@@ -50,6 +107,17 @@ const Header = () => {
         { id: 'life-at-rcti', label: 'Gallery' },
         { id: 'contact', label: 'Register' },
     ];
+
+    const courseDetailNavItems = [
+        { id: 'home', label: 'Home' },
+        { id: 'courses', label: 'Courses' }, // Redirects to Home -> Courses
+        { id: 'about-course', label: 'About Course' }, // Local Scroll
+        { id: 'faculty', label: 'Faculty' }, // Local Scroll
+        { id: 'testimonials', label: 'Testimonials' }, // Local Scroll
+        { id: 'contact', label: 'Register' }, // Redirects to Home -> Register
+    ];
+
+    const navItems = isCourseDetailPage ? courseDetailNavItems : defaultNavItems;
 
     return (
         <header className={`header ${isScrolled ? 'scrolled' : ''}`}>

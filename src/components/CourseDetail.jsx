@@ -4,19 +4,23 @@ import Faculty from './Faculty';
 import Testimonials from './Testimonials';
 import './Courses.css'; // Reusing courses css for card styles
 import eventBus from '../services/eventBus';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Icons } from '../constants/icons';
 import { FiTarget, FiAward, FiCheckCircle, FiBookOpen, FiClock, FiActivity, FiDollarSign } from 'react-icons/fi';
 import SEO from './common/SEO';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const CourseDetail = () => {
     const { id } = useParams();
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
+    const aboutSectionRef = useRef(null);
+
+    useIntersectionObserver(aboutSectionRef, 'about-course');
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        eventBus.emitActiveSection({ section: 'courses' });
+        eventBus.emitActiveSection({ section: 'about-course' });
 
         const fetchCourse = async () => {
             try {
@@ -104,7 +108,7 @@ const CourseDetail = () => {
                 {/* Right Side: Scrollable Details */}
                 <div className="course-content-main" style={{ flex: 1 }}>
                     {/* Introduction & About */}
-                    <div className="detail-card mb-8" style={{ backgroundColor: 'white', padding: '30px', borderRadius: '15px', boxShadow: '0 5px 15px rgba(0,0,0,0.05)', marginBottom: '30px' }}>
+                    <div id="about-course" ref={aboutSectionRef} className="detail-card mb-8" style={{ backgroundColor: 'white', padding: '30px', borderRadius: '15px', boxShadow: '0 5px 15px rgba(0,0,0,0.05)', marginBottom: '30px', scrollMarginTop: '100px' }}>
                         <h2 style={{ fontSize: '1.8rem', marginBottom: '20px', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '10px' }}>
                             Introduction
                         </h2>
