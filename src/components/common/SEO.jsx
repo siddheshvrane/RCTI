@@ -5,7 +5,7 @@ const SEO = ({ title, description, keywords, image, url, schema }) => {
     const siteTitle = "Rane's Computer & Typing Institute";
     const defaultDescription = "Rane's Computer and Typing Institute in Ghatkopar West, Mumbai. Best computer classes for MSCIT, CCC, Tally, Python, and Government Certified Typing courses.";
     const defaultKeywords = "computer classes near me, typing classes near me, computer institute Ghatkopar, MSCIT classes Mumbai, GCC-TBC typing, coding classes, Rane's Computer Institute";
-    const defaultImage = "/vite.svg"; // Replace with a real OG image if available
+    const defaultImage = "/RCTI.png"; // Updated to use the correct logo
     const siteUrl = "https://www.ranescomputer.in";
 
     const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;

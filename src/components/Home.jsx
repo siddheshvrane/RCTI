@@ -12,7 +12,7 @@ const Home = () => {
         "@type": ["EducationalOrganization", "LocalBusiness"],
         "name": "Rane's Computer & Typing Institute",
         "url": "https://www.ranescomputer.in",
-        "logo": "https://www.ranescomputer.in/vite.svg", // Replace with actual logo URL if different
+        "logo": "https://www.ranescomputer.in/RCTI.png", // Use actual logo URL
         "sameAs": [
             "https://www.facebook.com/share/1NAruT9GD5/",
             "https://www.instagram.com/ranescomputer?igsh=MXByMDM3c3pmNnR3NQ=="
