@@ -19,7 +19,7 @@ const Courses = () => {
         : courses.filter(course => course.category === selectedCategory);
 
     // Use custom hooks
-    const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [filteredCourses]);
+    const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [filteredCourses], { autoPlay: true });
     useIntersectionObserver(sectionRef, 'courses');
 
     useEffect(() => {

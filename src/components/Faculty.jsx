@@ -44,7 +44,7 @@ const Faculty = ({ courseName }) => {
     const displayFaculty = sortedFaculty;
 
     // Use custom hooks
-    const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [displayFaculty]);
+    const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [displayFaculty], { autoPlay: true });
     useIntersectionObserver(sectionRef, 'faculty');
 
     if (courseName && displayFaculty.length === 0) {

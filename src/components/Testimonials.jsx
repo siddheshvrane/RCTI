@@ -41,7 +41,7 @@ const Testimonials = ({ courseName }) => {
     }
 
     // Use custom hooks
-    const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [displayTestimonials]);
+    const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [displayTestimonials], { autoPlay: true });
     useIntersectionObserver(sectionRef, 'testimonials');
 
     return (

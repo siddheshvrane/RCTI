@@ -61,7 +61,10 @@ const LifeAtRCTI = () => {
         setSelectedImageIndex((prev) => (prev - 1 + photos.length) % photos.length);
     };
 
-    const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [photos]);
+    const { canScrollLeft, canScrollRight, scroll } = useSlider(sliderRef, [photos], {
+        autoPlay: true,
+        isPaused: selectedImageIndex !== null
+    });
 
     if (loading) {
         return <div className="loading-spinner">Loading...</div>;
