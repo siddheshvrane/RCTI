@@ -11,6 +11,22 @@ export const mockApi = {
         if (!response.ok) throw new Error('Invalid credentials');
         return response.json();
     },
+    updateProfile: async (data) => {
+        const token = localStorage.getItem('adminToken');
+        const response = await fetch(`${API_URL}/auth/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': token
+            },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to update profile');
+        }
+        return response.json();
+    },
 
     // Courses
     getCourses: async () => {
