@@ -7,7 +7,7 @@ import eventBus from '../services/eventBus';
  * @param {string} sectionName - Name of the section for event emission
  * @param {Object} options - IntersectionObserver options (threshold, etc.)
  */
-export const useIntersectionObserver = (ref, sectionName, options = { threshold: 0.3 }) => {
+export const useIntersectionObserver = (ref, sectionName, options = { threshold: 0.3 }, dependencies = []) => {
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -29,5 +29,5 @@ export const useIntersectionObserver = (ref, sectionName, options = { threshold:
                 observer.unobserve(ref.current);
             }
         };
-    }, [ref, sectionName, options.threshold]);
+    }, [ref, sectionName, options.threshold, ...dependencies]);
 };

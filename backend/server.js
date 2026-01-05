@@ -68,6 +68,7 @@ app.use('/api/testimonials', require('./routes/testimonials'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/banners', require('./routes/banners'));
 app.use('/api/registrations', require('./routes/registrations'));
+app.use('/api/institute-photos', require('./routes/institutePhotos'));
 
 const PORT = process.env.PORT || 5000;
 

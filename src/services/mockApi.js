@@ -147,5 +147,37 @@ export const mockApi = {
         });
         if (!response.ok) throw new Error('Failed to delete banner');
         return response.json();
+    },
+
+    // Institute Photos
+    getInstitutePhotos: async () => {
+        const response = await fetch(`${API_URL}/institute-photos`);
+        if (!response.ok) throw new Error('Failed to fetch institute photos');
+        return response.json();
+    },
+    addInstitutePhoto: async (photo) => {
+        const response = await fetch(`${API_URL}/institute-photos`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(photo)
+        });
+        if (!response.ok) throw new Error('Failed to add institute photo');
+        return response.json();
+    },
+    reorderInstitutePhoto: async (id, direction) => {
+        const response = await fetch(`${API_URL}/institute-photos/${id}/reorder`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ direction })
+        });
+        if (!response.ok) throw new Error('Failed to reorder institute photo');
+        return response.json();
+    },
+    deleteInstitutePhoto: async (id) => {
+        const response = await fetch(`${API_URL}/institute-photos/${id}`, {
+            method: 'DELETE'
+        });
+        if (!response.ok) throw new Error('Failed to delete institute photo');
+        return response.json();
     }
 };

@@ -11,6 +11,7 @@ import FacultyPage from './admin/pages/FacultyPage';
 import TestimonialsPage from './admin/pages/TestimonialsPage';
 import BannerPage from './admin/pages/BannerPage';
 import RegistrationPage from './admin/pages/RegistrationPage';
+import InstitutePhotosPage from './admin/pages/InstitutePhotosPage';
 import Footer from './components/Footer';
 import eventBus from './services/eventBus';
 import './styles/index.css';
@@ -65,6 +66,7 @@ function App() {
               <Route path="faculty" element={<FacultyPage />} />
               <Route path="testimonials" element={<TestimonialsPage />} />
               <Route path="banners" element={<BannerPage />} />
+              <Route path="institute-photos" element={<InstitutePhotosPage />} />
               <Route path="registrations" element={<RegistrationPage />} />
               {/* Default redirect to courses */}
               <Route index element={<CoursePage />} />

@@ -15,6 +15,12 @@
     border-bottom: 1px solid var(--color-gray-200);
 }
 
+.header .container {
+    padding: 0 var(--spacing-8);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -38,11 +44,12 @@
 }
 
 .logo-title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--color-primary);
     letter-spacing: -0.5px;
     transition: color var(--transition-fast);
+    white-space: nowrap;
 }
 
 .logo:hover .logo-title {
@@ -67,10 +74,11 @@
     font-weight: 500;
     font-size: var(--text-base);
     color: var(--color-gray-700);
-    padding: var(--spacing-2) var(--spacing-4);
+    padding: var(--spacing-2) var(--spacing-3);
     border-radius: var(--radius-md);
     transition: all var(--transition-fast);
     position: relative;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -161,7 +169,7 @@
 }
 
 /* Responsive Design */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .nav-desktop {
         display: block;
     }

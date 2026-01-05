@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
-import { MdLibraryBooks, MdPeople, MdReviews, MdLogout, MdImage, MdListAlt } from 'react-icons/md';
+import { MdLibraryBooks, MdPeople, MdReviews, MdLogout, MdImage, MdListAlt, MdPhotoLibrary } from 'react-icons/md';
 import '../Admin.css';
 
 const AdminLayout = () => {
@@ -46,6 +46,7 @@ const AdminLayout = () => {
         { path: '/admin/dashboard/faculty', label: 'Faculty', icon: <MdPeople /> },
         { path: '/admin/dashboard/testimonials', label: 'Testimonials', icon: <MdReviews /> },
         { path: '/admin/dashboard/banners', label: 'Banners', icon: <MdImage /> },
+        { path: '/admin/dashboard/institute-photos', label: 'RCTI Photos', icon: <MdPhotoLibrary /> },
         { path: '/admin/dashboard/registrations', label: 'Registrations', icon: <MdListAlt /> },
     ];
 

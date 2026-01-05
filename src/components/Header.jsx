@@ -47,6 +47,7 @@ const Header = () => {
         { id: 'courses', label: 'Courses' },
         { id: 'faculty', label: 'Faculty' },
         { id: 'testimonials', label: 'Testimonials' },
+        { id: 'life-at-rcti', label: 'Life at RCTI' },
         { id: 'contact', label: 'Register' },
     ];
 

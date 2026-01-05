@@ -4,6 +4,7 @@ import Courses from './Courses';
 import Testimonials from './Testimonials';
 import Faculty from './Faculty';
 import Contact from './Contact';
+import LifeAtRCTI from './LifeAtRCTI';
 import SEO from './common/SEO';
 
 const Home = () => {
@@ -68,6 +69,7 @@ const Home = () => {
             <Courses />
             <Faculty />
             <Testimonials />
+            <LifeAtRCTI />
             <Contact />
         </>
     );
