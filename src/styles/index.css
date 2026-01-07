@@ -339,51 +339,30 @@ a:hover {
 }
 
 .typing-effect {
-  overflow: hidden;
-  white-space: nowrap;
-  display: inline-block;
-  width: 0;
+  /* Allow normal flow for wrapping */
+  white-space: normal;
+  display: inline;
   position: relative;
-  /* Use active alignment to ensure it sits on the line properly */
-  vertical-align: middle;
-  margin-right: 0;
-  padding-right: 0;
-
-  /* TRANSITION instead of ANIMATION gives us the reverse effect automatically */
-  /* Speed: 1.5s (faster than 3s). steps() ensures typewriter feel */
-  transition: width 1.5s steps(var(--type-steps, 40), end);
-}
-
-.typing-effect.typing-active {
-  width: var(--type-width);
+  /* Cursor color variable */
+  --cursor-color: linear-gradient(180deg, #ff9500 0%, #ffd700 100%);
 }
 
 .typing-effect::after {
   content: '';
-  position: absolute;
-  right: 0;
-  /* Height slightly smaller than 1em to fit inside line-height cleanly */
-  height: 1em;
-  /* Perfect vertical centering */
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2px;
-  /* Fixed thin width looks cleaner than em for cursor line */
-  background: linear-gradient(180deg, #ff9500 0%, #ffd700 100%);
-  /* Continuous blinking, independent of typing state */
+  display: inline-block;
+  width: 3px;
+  /* height: 1em to match text size better, adjusted vertical align */
+  height: 1.1em;
+  background: var(--cursor-color);
+  margin-left: 6px;
+  vertical-align: middle;
   animation: blink 0.8s ease-in-out infinite;
+  /* Slight negative margin to center it visually if needed, but middle does most work */
+  margin-bottom: 0.1em;
 }
 
-@media (max-width: 768px) {
-  .typing-effect {
-    white-space: normal !important;
-    width: auto !important;
-    overflow: visible !important;
-    display: block !important;
-    transition: none !important;
-  }
-
-  .typing-effect::after {
-    display: none !important;
-  }
+/* Ensure cursor is hidden when not active if needed, but per request "keep blinking" */
+/* If we want it to only appear when active: */
+.typing-effect:not(.typing-active)::after {
+  display: none;
 }

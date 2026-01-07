@@ -31,6 +31,33 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Batch reorder banners
+router.put('/reorder', async (req, res) => {
+    try {
+        const { items } = req.body; // Array of { id, order }
+
+        if (!items || !Array.isArray(items)) {
+            return res.status(400).json({ message: 'Invalid items array' });
+        }
+
+        // Use bulkWrite for efficient updates
+        const bulkOps = items.map(item => ({
+            updateOne: {
+                filter: { _id: item.id },
+                update: { order: item.order }
+            }
+        }));
+
+        await Banner.bulkWrite(bulkOps);
+
+        // Return all banners sorted
+        const banners = await Banner.find().sort({ order: 1 });
+        res.json(banners);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
 // Update a banner
 router.put('/:id', async (req, res) => {
     try {
@@ -45,7 +72,34 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Reorder banner (move up or down)
+// Batch reorder banners
+router.put('/reorder', async (req, res) => {
+    try {
+        const { items } = req.body; // Array of { id, order }
+
+        if (!items || !Array.isArray(items)) {
+            return res.status(400).json({ message: 'Invalid items array' });
+        }
+
+        // Use bulkWrite for efficient updates
+        const bulkOps = items.map(item => ({
+            updateOne: {
+                filter: { _id: item.id },
+                update: { order: item.order }
+            }
+        }));
+
+        await Banner.bulkWrite(bulkOps);
+
+        // Return all banners sorted
+        const banners = await Banner.find().sort({ order: 1 });
+        res.json(banners);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+// Single reorder (legacy/arrow support)
 router.put('/:id/reorder', async (req, res) => {
     try {
         const { direction } = req.body; // 'up' or 'down'
@@ -72,6 +126,9 @@ router.put('/:id/reorder', async (req, res) => {
         const swapBanner = await Banner.findOne({ order: swapOrder });
 
         if (!swapBanner) {
+            // If no banner at swap position, just update current order (gap fixing)
+            // Or try to find nearest neighbor? 
+            // For now, let's just stick to exact swap logic as it works for dense lists
             return res.status(400).json({ message: 'Cannot move in that direction' });
         }
 

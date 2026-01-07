@@ -60,6 +60,35 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// @route   PUT /api/institute-photos/reorder
+// @desc    Batch reorder photos
+// @access  Private (Admin)
+router.put('/reorder', async (req, res) => {
+    try {
+        const { items } = req.body; // Array of { id, order }
+
+        if (!items || !Array.isArray(items)) {
+            return res.status(400).json({ msg: 'Invalid items array' });
+        }
+
+        // Use bulkWrite for efficient updates
+        const bulkOps = items.map(item => ({
+            updateOne: {
+                filter: { _id: item.id },
+                update: { order: item.order }
+            }
+        }));
+
+        await InstitutePhoto.bulkWrite(bulkOps);
+
+        const photos = await InstitutePhoto.find().sort({ order: 1 });
+        res.json(photos);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 // @route   PUT /api/institute-photos/:id/reorder
 // @desc    Reorder a photo
 // @access  Private (Admin)

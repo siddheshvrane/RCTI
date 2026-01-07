@@ -6,32 +6,62 @@ export const useTypingAnimation = (elementRef) => {
         (entries) => {
             entries.forEach((entry) => {
                 const el = entry.target;
-                // We target the .typing-effect elements inside the section/entry
                 const typingElements = el.querySelectorAll ? el.querySelectorAll('.typing-effect') : [];
 
                 if (typingElements.length === 0 && el.classList.contains('typing-effect')) {
-                    // Handle case where element itself is the target
                     handleTyping(el, entry.isIntersecting);
                 } else {
                     typingElements.forEach(typingEl => handleTyping(typingEl, entry.isIntersecting));
                 }
             });
         },
-        { threshold: 0.2 } // Lower threshold for earlier trigger
+        { threshold: 0.2 }
     );
 
     const handleTyping = (el, isVisible) => {
         if (isVisible) {
-            // Calculate width only if not already done to avoid layout thrashing
-            if (!el.style.getPropertyValue('--type-width')) {
-                const textLength = el.textContent.length;
-                const width = el.scrollWidth + 20;
-                el.style.setProperty('--type-width', `${width}px`);
-                el.style.setProperty('--type-steps', textLength);
+            if (el.dataset.typingActive === 'true') return;
+
+            // Store original text if not already stored
+            if (!el.dataset.fullText) {
+                el.dataset.fullText = el.textContent.trim();
             }
+
+            const fullText = el.dataset.fullText;
+            el.textContent = ''; // Clear text to start typing
+            el.dataset.typingActive = 'true';
             el.classList.add('typing-active');
+
+            let charIndex = 0;
+            const typeChar = () => {
+                if (!el.dataset.typingActive) return; // Stop if no longer active
+
+                if (charIndex < fullText.length) {
+                    el.textContent += fullText.charAt(charIndex);
+                    charIndex++;
+                    // Randomize typing speed slightly for realism
+                    const delay = 30 + Math.random() * 50;
+                    setTimeout(typeChar, delay);
+                } else {
+                    // Typing finished
+                    el.dataset.typingDone = 'true';
+                }
+            };
+
+            typeChar();
+
         } else {
+            // Reset when out of view
+            el.dataset.typingActive = 'false';
             el.classList.remove('typing-active');
+            if (el.dataset.fullText) {
+                // Restore text or clear it? 
+                // To repeat animation on next scroll, we should probably leave it clear or reset to empty.
+                // But for SEO and fallback, keeping full text is better. 
+                // However, the logic above clears it on 'isVisible' entry.
+                // So here we can just reset state.
+                el.textContent = '';
+            }
         }
     };
 

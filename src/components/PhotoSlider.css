@@ -157,4 +157,8 @@
     .slider-btn {
         display: none;
     }
+
+    .slider-dots {
+        display: none;
+    }
 }

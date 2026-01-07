@@ -157,6 +157,15 @@ export const mockApi = {
         if (!response.ok) throw new Error('Failed to reorder banner');
         return response.json();
     },
+    reorderBannersBatch: async (items) => {
+        const response = await fetch(`${API_URL}/banners/reorder`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items })
+        });
+        if (!response.ok) throw new Error('Failed to reorder banners');
+        return response.json();
+    },
     deleteBanner: async (id) => {
         const response = await fetch(`${API_URL}/banners/${id}`, {
             method: 'DELETE'
@@ -187,6 +196,15 @@ export const mockApi = {
             body: JSON.stringify({ direction })
         });
         if (!response.ok) throw new Error('Failed to reorder institute photo');
+        return response.json();
+    },
+    reorderInstitutePhotosBatch: async (items) => {
+        const response = await fetch(`${API_URL}/institute-photos/reorder`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items })
+        });
+        if (!response.ok) throw new Error('Failed to reorder institute photos');
         return response.json();
     },
     deleteInstitutePhoto: async (id) => {

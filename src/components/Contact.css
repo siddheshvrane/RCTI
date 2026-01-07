@@ -55,6 +55,11 @@
     font-weight: 400;
 }
 
+.contact-form-wrapper {
+    /* Show form first on mobile */
+    order: -1;
+}
+
 .contact-form {
     background: var(--color-gray-50);
     padding: var(--spacing-8);
@@ -144,6 +149,11 @@
 @media (min-width: 768px) {
     .contact-content {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-form-wrapper {
+        /* Reset order for desktop side-by-side */
+        order: 0;
     }
 }
 
