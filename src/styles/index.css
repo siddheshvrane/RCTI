@@ -325,16 +325,15 @@ a:hover {
 }
 
 /* TYPING ANIMATION */
-/* Blink only needs opacity toggle */
-@keyframes blink {
+@keyframes blink-bg {
 
   0%,
   100% {
-    opacity: 1;
+    background-size: 3px 1.1em;
   }
 
   50% {
-    opacity: 0;
+    background-size: 0 1.1em;
   }
 }
 
@@ -345,24 +344,23 @@ a:hover {
   position: relative;
   /* Cursor color variable */
   --cursor-color: linear-gradient(180deg, #ff9500 0%, #ffd700 100%);
+
+  /* Cursor implementation utilizing padding + background to prevent lonely wrapping */
+  padding-right: 10px;
+  /* Space for gap + cursor */
+  background-image: var(--cursor-color);
+  background-repeat: no-repeat;
+  background-position: right center;
+  /* Aligns to the right edge of padding */
+  background-size: 3px 1.1em;
+  animation: blink-bg 0.8s steps(1) infinite;
 }
 
+/* We no longer use ::after for the cursor to ensure it sticks to the text block */
 .typing-effect::after {
-  content: '';
-  display: inline-block;
-  width: 3px;
-  /* height: 1em to match text size better, adjusted vertical align */
-  height: 1.1em;
-  background: var(--cursor-color);
-  margin-left: 6px;
-  vertical-align: middle;
-  animation: blink 0.8s ease-in-out infinite;
-  /* Slight negative margin to center it visually if needed, but middle does most work */
-  margin-bottom: 0.1em;
+  content: none;
 }
 
-/* Ensure cursor is hidden when not active if needed, but per request "keep blinking" */
-/* If we want it to only appear when active: */
-.typing-effect:not(.typing-active)::after {
-  display: none;
-}
+/* Ensure cursor is hidden when not active if specifically requested, 
+   but currently we want it always visible or controlled by the animation */
+/* .typing-effect:not(.typing-active) { } */

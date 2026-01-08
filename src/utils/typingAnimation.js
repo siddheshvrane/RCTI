@@ -20,6 +20,9 @@ export const useTypingAnimation = (elementRef) => {
 
     const handleTyping = (el, isVisible) => {
         if (isVisible) {
+            // If already active, don't restart. 
+            // However, we must ensure we don't have a zombie loop.
+            // If typingActive is true, we assume the current loop is valid.
             if (el.dataset.typingActive === 'true') return;
 
             // Store original text if not already stored
@@ -32,8 +35,15 @@ export const useTypingAnimation = (elementRef) => {
             el.dataset.typingActive = 'true';
             el.classList.add('typing-active');
 
+            // generate a unique ID for this specific animation session
+            const sessionId = Date.now() + Math.random().toString();
+            el.dataset.typingSession = sessionId;
+
             let charIndex = 0;
             const typeChar = () => {
+                // Check if this session is still the active one
+                if (el.dataset.typingSession !== sessionId) return;
+
                 if (!el.dataset.typingActive) return; // Stop if no longer active
 
                 if (charIndex < fullText.length) {
@@ -54,12 +64,11 @@ export const useTypingAnimation = (elementRef) => {
             // Reset when out of view
             el.dataset.typingActive = 'false';
             el.classList.remove('typing-active');
+            // Invalidate the session so any running loop stops
+            el.dataset.typingSession = '';
+
             if (el.dataset.fullText) {
-                // Restore text or clear it? 
-                // To repeat animation on next scroll, we should probably leave it clear or reset to empty.
-                // But for SEO and fallback, keeping full text is better. 
-                // However, the logic above clears it on 'isVisible' entry.
-                // So here we can just reset state.
+                // Reset to empty so it's clean for next time
                 el.textContent = '';
             }
         }
