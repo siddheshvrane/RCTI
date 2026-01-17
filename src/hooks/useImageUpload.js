@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { compressImage } from '../utils/imageUtils';
 
 /**
  * Custom hook for managing image upload and cropping workflow
@@ -21,8 +22,22 @@ export const useImageUpload = (onImageCropped) => {
         }
     };
 
-    const onCropComplete = (croppedImageBase64) => {
-        onImageCropped(croppedImageBase64);
+    const onCropComplete = async (croppedImageBase64) => {
+        try {
+            // Convert Base64 to Blob to pass to compressImage utility, 
+            // OR ensure compressImage handles Base64 (it expects File currently).
+            // Let's assume we import a utility that handles this or we transform it.
+            // Simplified: Convert base64 to blob/file
+            const fetchRes = await fetch(croppedImageBase64);
+            const blob = await fetchRes.blob();
+            const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+
+            const compressedBase64 = await compressImage(file);
+            onImageCropped(compressedBase64);
+        } catch (error) {
+            console.error("Compression failed", error);
+            onImageCropped(croppedImageBase64); // Fallback to original
+        }
         setShowCropper(false);
         setImageSrc(null);
     };

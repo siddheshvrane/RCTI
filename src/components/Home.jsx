@@ -1,11 +1,20 @@
+import React, { Suspense } from 'react';
 import PhotoSlider from './PhotoSlider';
-import About from './About';
-import Courses from './Courses';
-import Testimonials from './Testimonials';
-import Faculty from './Faculty';
-import Contact from './Contact';
-import LifeAtRCTI from './LifeAtRCTI';
 import SEO from './common/SEO';
+
+// Lazy load heavy components
+const About = React.lazy(() => import('./About'));
+const Courses = React.lazy(() => import('./Courses'));
+const Testimonials = React.lazy(() => import('./Testimonials'));
+const Faculty = React.lazy(() => import('./Faculty'));
+const Contact = React.lazy(() => import('./Contact'));
+const LifeAtRCTI = React.lazy(() => import('./LifeAtRCTI'));
+
+const LoadingFallback = () => (
+    <div style={{ padding: '40px', textAlign: 'center', color: '#666' }}>
+        Loading section...
+    </div>
+);
 
 const Home = () => {
     const organizationSchema = {
@@ -65,12 +74,14 @@ const Home = () => {
                 schema={organizationSchema}
             />
             <PhotoSlider />
-            <About />
-            <Courses />
-            <Faculty />
-            <Testimonials />
-            <LifeAtRCTI />
-            <Contact />
+            <Suspense fallback={<LoadingFallback />}>
+                <About />
+                <Courses />
+                <Faculty />
+                <Testimonials />
+                <LifeAtRCTI />
+                <Contact />
+            </Suspense>
         </>
     );
 };

@@ -24,11 +24,12 @@ const CourseDetail = () => {
 
         const fetchCourse = async () => {
             try {
-                const courses = await mockApi.getCourses();
-                const foundCourse = courses.find(c => String(c._id) === id || c.title.toLowerCase().replace(/\s+/g, '-') === id);
-                setCourse(foundCourse);
+                // Fetch single course efficiently
+                const courseData = await mockApi.getCourse(id);
+                setCourse(courseData);
             } catch (error) {
                 console.error('Failed to fetch course details:', error);
+                setCourse(null);
             } finally {
                 setLoading(false);
             }

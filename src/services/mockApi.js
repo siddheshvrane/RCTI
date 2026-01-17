@@ -29,9 +29,15 @@ export const mockApi = {
     },
 
     // Courses
-    getCourses: async () => {
-        const response = await fetch(`${API_URL}/courses`);
+    getCourses: async (mode) => {
+        const url = mode ? `${API_URL}/courses?mode=${mode}` : `${API_URL}/courses`;
+        const response = await fetch(url);
         if (!response.ok) throw new Error('Failed to fetch courses');
+        return response.json();
+    },
+    getCourse: async (id) => {
+        const response = await fetch(`${API_URL}/courses/${id}`);
+        if (!response.ok) throw new Error('Failed to fetch course');
         return response.json();
     },
     addCourse: async (course) => {

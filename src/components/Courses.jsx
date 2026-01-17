@@ -25,7 +25,8 @@ const Courses = () => {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const data = await mockApi.getCourses();
+                // Fetch only summary data for the list
+                const data = await mockApi.getCourses('summary');
                 setCourses(data);
             } catch (error) {
                 console.error('Failed to fetch courses:', error);
