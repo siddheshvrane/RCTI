@@ -12,20 +12,12 @@ app.use(express.json({ limit: '50mb' })); // Increase limit for base64 images
 // Connect to MongoDB
 // Connect to MongoDB
 const connectDB = async () => {
-    if (mongoose.connection.readyState >= 1) return;
     try {
+        if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
+            return;
+        }
         await mongoose.connect(process.env.MONGO_URI);
         console.log('MongoDB Connected');
-
-        // Run startup scripts only once
-        const updateFacultyExperience = require('./utils/updateFacultyExperience');
-        const seedAdmin = require('./utils/seedAdmin');
-        try {
-            updateFacultyExperience().catch(e => console.error(e));
-            seedAdmin().catch(e => console.error(e));
-        } catch (error) {
-            console.error('Failed to run startup scripts:', error);
-        }
     } catch (err) {
         console.error('MongoDB Connection Error:', err);
     }
@@ -36,6 +28,18 @@ app.use(async (req, res, next) => {
     await connectDB();
     next();
 });
+
+// Run startup scripts
+const runStartupScripts = () => {
+    const updateFacultyExperience = require('./utils/updateFacultyExperience');
+    const seedAdmin = require('./utils/seedAdmin');
+    try {
+        updateFacultyExperience().catch(e => console.error(e));
+        seedAdmin().catch(e => console.error(e));
+    } catch (error) {
+        console.error('Failed to run startup scripts:', error);
+    }
+};
 
 // Routes
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date() }));
@@ -73,7 +77,11 @@ app.use('/api/institute-photos', require('./routes/institutePhotos'));
 const PORT = process.env.PORT || 5000;
 
 if (require.main === module) {
-    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+    app.listen(PORT, async () => {
+        console.log(`Server started on port ${PORT}`);
+        await connectDB();
+        runStartupScripts();
+    });
 }
 
 module.exports = app;
