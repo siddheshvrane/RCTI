@@ -12,7 +12,7 @@ const FAQ = () => {
         },
         {
             question: "Do you provide study materials or books?",
-            answer: "Yes! We provide official printed course books and comprehensive study materials for all our courses (MSCIT, Tally, etc.) at no extra cost. You don't just get 'notes'; you get proper learning resources."
+            answer: "Yes! We provide official printed course books and comprehensive study materials. Additionally, MSCIT students get a personal **MKCL ERA Login** (eLearning Revolution for All) for interactive practical learning and practice tests."
         },
         {
             question: "Is attendance mandatory? How do you track it?",

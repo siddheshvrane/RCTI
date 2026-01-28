@@ -62,8 +62,8 @@ const Features = () => {
         {
             id: 5,
             icon: "📚",
-            title: "Free Study Material",
-            description: "Official course books and printed notes provided for all courses."
+            title: "Study Material & ERA",
+            description: "Official books and ERA Login for MSCIT students for interactive learning."
         },
         {
             id: 6,
