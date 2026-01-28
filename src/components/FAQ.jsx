@@ -8,7 +8,19 @@ const FAQ = () => {
     const faqs = [
         {
             question: "What computer courses does RCTI offer?",
-            answer: "We offer a wide range of government-certified courses including MSCIT, Tally with GST, Web Development, Graphic Design, C/C++/Java Programming, and Advanced Excel. We also provide specialized typing courses for English and Marathi."
+            answer: "We offer a wide range of government-certified courses including MSCIT, Tally with GST, Graphic Design, and Advanced Excel. We also provide specialized typing courses for English and Marathi."
+        },
+        {
+            question: "Do you provide study materials or books?",
+            answer: "Yes! We provide official printed course books and comprehensive study materials for all our courses (MSCIT, Tally, etc.) at no extra cost. You don't just get 'notes'; you get proper learning resources."
+        },
+        {
+            question: "Is attendance mandatory? How do you track it?",
+            answer: "We maintain professional discipline with Biometric Attendance. Regular attendance is encouraged to ensure you complete your practical sessions and get the most out of the course."
+        },
+        {
+            question: "Why choose RCTI over other big institutes in Ghatkopar?",
+            answer: "We offer the perfect balance: The professionalism of big institutes (Biometric, Study Material, Govt. Certification) combined with the Personal Attention that only a specialized local institute like ours can provide."
         },
         {
             question: "Is Rane's Computer Institute government certified?",

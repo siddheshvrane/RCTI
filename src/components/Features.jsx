@@ -48,34 +48,46 @@ const Features = () => {
             description: 'Earn industry-recognized certificates that add value to your resume and career.'
         },
         {
-            id: 4,
+            id: 3,
             icon: '⏰',
             title: 'Flexible Timings',
             description: 'Choose from morning, afternoon, or evening batches that fit your schedule perfectly.'
         },
         {
+            id: 4,
+            icon: "🖥️",
+            title: "100% Practical Training",
+            description: "One student, one computer policy. Maximum hands-on practice."
+        },
+        {
             id: 5,
-            icon: '💻',
-            title: 'Modern Lab Facilities',
-            description: 'Practice on latest computers with high-speed internet and updated software.'
+            icon: "📚",
+            title: "Free Study Material",
+            description: "Official course books and printed notes provided for all courses."
         },
         {
             id: 6,
-            icon: '📚',
-            title: 'Study Materials',
-            description: 'Comprehensive study materials and practice exercises for effective learning.'
+            icon: "👆",
+            title: "Biometric Attendance",
+            description: "Digital attendance tracking to ensure discipline and punctuality."
         },
         {
             id: 7,
-            icon: '👥',
-            title: 'Small Batch Size',
-            description: 'Limited students per batch ensuring personalized attention and better learning.'
+            icon: "📜",
+            title: "Govt. Recognized",
+            description: "Authorized MKCL center for valid and valuable certifications."
         },
         {
             id: 8,
-            icon: '🎯',
-            title: 'Practical Training',
-            description: 'Hands-on practical sessions with real-world projects and assignments.'
+            icon: "👨‍🏫",
+            title: "Personal Attention",
+            description: "Small batches with dedicated guidance for every student."
+        },
+        {
+            id: 9,
+            icon: "💼",
+            title: "Job Assistance",
+            description: "Resume building and placement support for career courses."
         }
     ];
 
