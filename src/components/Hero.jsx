@@ -32,12 +32,12 @@ const Hero = () => {
                 <div className="hero-content">
                     <div className="hero-text fade-in-up">
                         <h1 className="hero-title">
-                            Master Computer Skills &<br />
-                            <span className="gradient-text">Perfect Your Typing</span>
+                            Best Computer Classes in <br />
+                            <span className="gradient-text">Bhatwadi, Ghatkopar</span>
                         </h1>
                         <p className="hero-description">
-                            Join Rane's Computer and Typing Institute - Your gateway to digital excellence.
-                            Learn from certified professionals and unlock your potential with industry-recognized courses.
+                            Join Rane's Computer and Typing Institute (RCTI) for <strong>Job-Oriented Training</strong> in Typing, MSCIT, Tally Prime, Graphic Designing, and much more.
+                            We provide <strong>Personal Attention</strong>, 100% Practical Sessions, and Government Accredited MKCL Certification.
                         </p>
                         <div className="hero-stats">
                             <div className="stat-item">
